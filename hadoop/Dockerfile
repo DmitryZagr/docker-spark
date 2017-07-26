@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM openjdk:8
 
 MAINTAINER Mikhail Shimko <mikevictim@gmail.com>
 
@@ -31,7 +31,7 @@ ENV HOST_RESOLVER=files_dns
 ENV USER=root
 ENV PATH $HADOOP_PREFIX/bin/:$PATH
 
-ADD Entrypoint.sh /Entrypoint.sh
-RUN chmod a+x /Entrypoint.sh
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod a+x /entrypoint.sh
 
-ENTRYPOINT ["/Entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

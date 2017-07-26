@@ -25,6 +25,7 @@ services:
       - SPARK_CONF_spark_history_fs_logDirectory=hdfs://namenode.hadoop:8020/spark-logs
     env_file:
       - ./hadoop.env
+    command: tail -f /var/log/dmesg
   datanode1:
     image: agentlab/hadoop-datanode
     container_name: datanode1    
@@ -39,6 +40,18 @@ services:
       constraint:node=: onet1      
     env_file:
       - ./hadoop.env
+  historyserver:
+    image: agentlab/hadoop-historyserver
+    container_name: historyserver    
+    hostname: historyserver
+    depends_on:
+      - namenode
+    networks:
+      - hadoop
+    volumes:
+      - hadoop_historyserver:/hadoop/yarn/timeline
+    env_file:
+      - ./hadoop.env
 networks:
     hadoop:
 
@@ -47,4 +60,7 @@ volumes:
     external: true
     
   hadoop_datanode1:
+    external: true
+  
+  hadoop_historyserver:
     external: true
