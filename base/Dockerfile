@@ -1,18 +1,18 @@
-FROM java:8
+FROM openjdk:8
 
 MAINTAINER Erika Pauwels <erika.pauwels@tenforce.com>
 MAINTAINER Gezim Sejdiu <g.sejdiu@gmail.com>
 
-ENV ENABLE_INIT_DAEMON true
-ENV INIT_DAEMON_BASE_URI http://identifier/init-daemon
-ENV INIT_DAEMON_STEP spark_master_init
+#ENV ENABLE_INIT_DAEMON true
+#ENV INIT_DAEMON_BASE_URI http://identifier/init-daemon
+#ENV INIT_DAEMON_STEP spark_master_init
 
 ENV SPARK_VERSION=2.2.0
 ENV HADOOP_VERSION=2.7
 
-COPY wait-for-step.sh /
-COPY execute-step.sh /
-COPY finish-step.sh /
+#COPY wait-for-step.sh /
+#COPY execute-step.sh /
+#COPY finish-step.sh /
 
 #COPY bde-spark.css /css/org/apache/spark/ui/static/timeline-view.css
 
@@ -20,7 +20,7 @@ ADD https://raw.githubusercontent.com/guilhem/apt-get-install/master/apt-get-ins
 RUN chmod +x /usr/bin/apt-get-install
 
 RUN apt-get-install -y curl \
-      && chmod +x *.sh \
+#      && chmod +x *.sh \
       && wget http://d3kbcqa49mib13.cloudfront.net/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
       && tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
       && mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark \
