@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  namenode:
+    image: agentlab/hadoop-namenode
+    container_name: namenode
+    hostname: namenode
+    networks:
+      - hadoop
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+    environment:
+      CLUSTER_NAME: teh-cluster
+    env_file:
+      - ./hadoop.env
+  spark:
+    image: agentlab/spark
+    container_name: spark
+    hostname: spark
+    networks:
+      - hadoop
+    environment:
+      - SPARK_CONF_spark_eventLog_enabled=true
+      - SPARK_CONF_spark_eventLog_dir=hdfs://namenode.hadoop:8020/spark-logs
+      - SPARK_CONF_spark_history_fs_logDirectory=hdfs://namenode.hadoop:8020/spark-logs
+    env_file:
+      - ./hadoop.env
+  datanode1:
+    image: agentlab/hadoop-datanode
+    container_name: datanode1    
+    hostname: datanode1
+    depends_on:
+      - namenode
+    networks:
+      - hadoop
+    volumes:
+      - hadoop_datanode1:/hadoop/dfs/data
+    environment:
+      constraint:node=: onet1      
+    env_file:
+      - ./hadoop.env
+networks:
+    hadoop:
+
+volumes:
+  hadoop_namenode:
+    external: true
+    
+  hadoop_datanode1:
+    external: true
