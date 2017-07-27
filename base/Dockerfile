@@ -1,14 +1,11 @@
 FROM openjdk:8
 
-MAINTAINER Erika Pauwels <erika.pauwels@tenforce.com>
-MAINTAINER Gezim Sejdiu <g.sejdiu@gmail.com>
-
 #ENV ENABLE_INIT_DAEMON true
 #ENV INIT_DAEMON_BASE_URI http://identifier/init-daemon
 #ENV INIT_DAEMON_STEP spark_master_init
 
 ENV SPARK_VERSION=2.2.0
-ENV HADOOP_VERSION=2.7
+ENV HADOOP_VERSION=2.8.1
 
 #COPY wait-for-step.sh /
 #COPY execute-step.sh /
@@ -19,18 +16,19 @@ ENV HADOOP_VERSION=2.7
 ADD https://raw.githubusercontent.com/guilhem/apt-get-install/master/apt-get-install /usr/bin/
 RUN chmod +x /usr/bin/apt-get-install
 
-RUN apt-get-install -y curl \
-#      && chmod +x *.sh \
-      && wget http://d3kbcqa49mib13.cloudfront.net/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
-      && tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
-      && mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark \
-      && rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
+RUN apt-get update && apt-get install -y curl && apt-get install wget \
+      && chmod +x *.sh \
+      && wget https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-without-hadoop.tgz \
+      && tar -xvzf  spark-2.2.0-bin-without-hadoop.tgz \
+      && mv spark-2.2.0-bin-without-hadoop spark \
+      && rm  spark-2.2.0-bin-without-hadoop.tgz \
       #&& cd /css \
       #&& jar uf /spark/jars/spark-core_2.11-${SPARK_VERSION}.jar org/apache/spark/ui/static/timeline-view.css \
       && cd /
 
 RUN apt-get-install -y python3 python3-setuptools python3-pip
 
+RUN echo "export SPARK_DIST_CLASSPATH=$(hadoop classpath)" » /opt/spark-$SPARK_VERSION/conf/spark-env.sh
 # Fix the value of PYTHONHASHSEED
 # Note: this is needed when you use Python 3.3 or greater
 ENV PYTHONHASHSEED 1
