@@ -1,5 +1,8 @@
 FROM openjdk:8
 
+MAINTAINER Erika Pauwels <erika.pauwels@tenforce.com>		
+MAINTAINER Gezim Sejdiu <g.sejdiu@gmail.com>
+
 #ENV ENABLE_INIT_DAEMON true
 #ENV INIT_DAEMON_BASE_URI http://identifier/init-daemon
 #ENV INIT_DAEMON_STEP spark_master_init
@@ -16,12 +19,12 @@ ENV HADOOP_VERSION=2.8.1
 ADD https://raw.githubusercontent.com/guilhem/apt-get-install/master/apt-get-install /usr/bin/
 RUN chmod +x /usr/bin/apt-get-install
 
-RUN apt-get update && apt-get install -y curl && apt-get install wget \
+RUN apt-get update && apt-get install -y curl wget \
       && chmod +x *.sh \
-      && wget https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-without-hadoop.tgz \
-      && tar -xvzf  spark-2.2.0-bin-without-hadoop.tgz \
-      && mv spark-2.2.0-bin-without-hadoop spark \
-      && rm  spark-2.2.0-bin-without-hadoop.tgz \
+      && wget https://d3kbcqa49mib13.cloudfront.net/spark-${SPARK_VERSION}-bin-without-hadoop.tgz \
+      && tar -xvzf  spark-${SPARK_VERSION}-bin-without-hadoop.tgz \
+      && mv spark-${SPARK_VERSION}-bin-without-hadoop spark \
+      && rm  spark-${SPARK_VERSION}-bin-without-hadoop.tgz \
       #&& cd /css \
       #&& jar uf /spark/jars/spark-core_2.11-${SPARK_VERSION}.jar org/apache/spark/ui/static/timeline-view.css \
       && cd /
