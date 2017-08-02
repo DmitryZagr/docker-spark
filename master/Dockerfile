@@ -1,7 +1,9 @@
-FROM bde2020/spark-base:2.2.0-hadoop2.7
+FROM bde2020/spark-base:2.2.0-hadoop2.8.1
 
 MAINTAINER Erika Pauwels <erika.pauwels@tenforce.com>
 MAINTAINER Gezim Sejdiu <g.sejdiu@gmail.com>
+
+HEALTHCHECK CMD curl -f http://localhost:8080/ || exit 1
 
 COPY master.sh /
 
