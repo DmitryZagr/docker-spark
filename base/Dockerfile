@@ -5,11 +5,11 @@ MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
 
 RUN apt-get update \
       && apt-get install -y wget \
-      && wget https://dl.dropboxusercontent.com/u/4882345/packages/spark-2.1.2-SNAPSHOT-bin-spark-2.1.0-hive.tgz \
+      && wget https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz \
       && apt-get --purge remove -y wget \
-      && tar -xvzf spark-2.1.2-SNAPSHOT-bin-spark-2.1.0-hive.tgz \
-      && mv spark-2.1.2-SNAPSHOT-bin-spark-2.1.0-hive spark \
-      && rm spark-2.1.2-SNAPSHOT-bin-spark-2.1.0-hive.tgz \
+      && tar -xvzf spark-2.2.0-bin-hadoop2.7.tgz \
+      && mv spark-2.2.0-bin-hadoop2.7 spark \
+      && rm spark-2.2.0-bin-hadoop2.7.tgz \
       && cd /
 
 ENV SPARK_HOME /spark/
