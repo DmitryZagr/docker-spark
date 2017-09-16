@@ -12,3 +12,6 @@ down:
 spark-app:
 	docker-compose -f docker-compose-spark-app.yml build
 	docker-compose -f docker-compose-spark-app.yml up
+
+build:
+	docker build -t bde2020/spark-base:2.2.0-hadoop2.8.1-hive-java8 ./base
