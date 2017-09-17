@@ -14,6 +14,6 @@ spark-app:
 	docker-compose -f docker-compose-spark-app.yml up
 
 build:
-	docker build -t bde2020/spark-base:2.2.0-hadoop2.8.1-hive-java8 ./base
-	docker build -t bde2020/spark-master:2.2.0-hadoop2.8.1-hive-java8 ./master
-	docker build -t bde2020/spark-worker:2.2.0-hadoop2.8.1-hive-java8 ./worker
+	docker build -t bde2020/spark-base:2.1.1-hadoop2.8.1-hive-java8 ./base
+	docker build -t bde2020/spark-master:2.1.1-hadoop2.8.1-hive-java8 ./master
+	docker build -t bde2020/spark-worker:2.1.1-hadoop2.8.1-hive-java8 ./worker
