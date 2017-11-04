@@ -14,10 +14,10 @@ spark-app:
 	docker-compose -f docker-compose-spark-app.yml up
 
 build:
-	docker build -t dmitryzagr/spark-base:2.1.1-hadoop2.8.1-hive-java8 ./base
-	docker build -t dmitryzagr/spark-master:2.1.1-hadoop2.8.1-hive-java8 ./master
-	docker build -t dmitryzagr/spark-worker:2.1.1-hadoop2.8.1-hive-java8 ./worker
+	docker build -t dmitryzagr/spark-base:2.2.0-hadoop2.8.1-hive-java8 ./base
+	docker build -t dmitryzagr/spark-master:2.2.0-hadoop2.8.1-hive-java8 ./master
+	docker build -t dmitryzagr/spark-worker:2.2.0-hadoop2.8.1-hive-java8 ./worker
 push:
-	docker push dmitryzagr/spark-base:2.1.1-hadoop2.8.1-hive-java8
-	docker push dmitryzagr/spark-master:2.1.1-hadoop2.8.1-hive-java8
-	docker push dmitryzagr/spark-worker:2.1.1-hadoop2.8.1-hive-java8
+	docker push dmitryzagr/spark-base:2.2.0-hadoop2.8.1-hive-java8
+	docker push dmitryzagr/spark-master:2.2.0-hadoop2.8.1-hive-java8
+	docker push dmitryzagr/spark-worker:2.2.0-hadoop2.8.1-hive-java8
