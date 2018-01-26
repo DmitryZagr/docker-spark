@@ -1,4 +1,4 @@
-FROM dmitryzagr/spark-base:2.2.0-hadoop2.8.1-hive-java8
+FROM dmitryzagr/spark-base:2.2.1-hadoop3.0.0-java8
 
 MAINTAINER Erika Pauwels <erika.pauwels@tenforce.com>
 MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
