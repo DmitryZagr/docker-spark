@@ -5,11 +5,11 @@ MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
 
 RUN apt-get update \
       && apt-get install -y wget \
-      && wget http://apache-mirror.rbc.ru/pub/apache/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz \
+      && wget http://apache-mirror.rbc.ru/pub/apache/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz \
       && apt-get --purge remove -y wget \
-      && tar -xvzf spark-2.2.1-bin-hadoop2.7.tgz \
-      && mv spark-2.2.1-bin-hadoop2.7 spark \
-      && rm spark-2.2.1-bin-hadoop2.7.tgz \
+      && tar -xvzf spark-2.2.0-bin-hadoop2.7.tgz \
+      && mv spark-2.2.0-bin-hadoop2.7 spark \
+      && rm spark-2.2.0-bin-hadoop2.7.tgz \
       && cd /
 
 ENV SPARK_HOME /spark/
