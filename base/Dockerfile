@@ -1,4 +1,4 @@
-FROM dmitryzagr/hadoop-base:hadoop3.1.0-java8
+FROM dmitryzagr/hadoop-base:hadoop3.1.1-java8
 
 MAINTAINER Erika Pauwels <erika.pauwels@tenforce.com>
 MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
